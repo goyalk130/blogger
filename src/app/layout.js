@@ -1,5 +1,4 @@
-"use client"
-import { SessionProvider } from 'next-auth/react'
+import Wrapper from '../../components/wrapper'
 import './globals.css'
 import { Inter } from 'next/font/google'
 
@@ -14,9 +13,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-      <SessionProvider>
+      <Wrapper>
       {children}
-      </SessionProvider>
+      </Wrapper>
+
       </body>
     </html>
   )
