@@ -1,4 +1,4 @@
-import Wrapper from '../../components/wrapper'
+import Wrapper from '../../components/Wrapper'
 import './globals.css'
 import { Inter } from 'next/font/google'
 
