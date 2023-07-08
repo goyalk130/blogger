@@ -4,5 +4,8 @@ import { getDailyTrendsForDay } from "../../../../utils/trends";
 
 export async function GET(req){
     const json = await getDailyTrendsForDay();
-    return NextResponse.json(json)
+    const data = json.rss.channel
+    console.log(data[0])
+    return NextResponse.json({...data[0]})
+    // return ()
 }
