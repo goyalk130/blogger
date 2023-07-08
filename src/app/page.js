@@ -4,7 +4,7 @@ import { getPosts } from "../../utils/blogger";
 import fetchLatestSearchTrends, {
   getDailyTrendsForDay,
 } from "../../utils/trends";
-import GetAllTrends from "../../components/getalltrends";
+import GetAllTrends from "../../components/GetAllTrends";
 import axios from "axios";
 import { Configuration, OpenAIApi } from "openai";
 import * as dotenv from "dotenv";
