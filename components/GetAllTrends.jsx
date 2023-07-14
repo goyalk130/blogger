@@ -17,8 +17,8 @@ const GetAllTrends = ({state,setstate}) => {
 
   return (
     <div>
-    <button onClick={getdata} className='bg-white p-5 text-white'>GET</button>
-    Trend</div>
+    <button onClick={getdata} className='bg-white p-5 text-white'>GET Trend</button>
+    </div>
   )
 }
 

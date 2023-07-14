@@ -9,7 +9,6 @@ import axios from "axios";
 import { Configuration, OpenAIApi } from "openai";
 import * as dotenv from "dotenv";
 import { useState } from "react";
-import { scrapeWebsite } from "../../utils/webscrapper";
 // import {GoogleSignInButton} from "next-auth/"
 
 export default function Home() {
@@ -26,48 +25,28 @@ export default function Home() {
     }
   };
 
-  async function makecall() {
-    const configuration = new Configuration({
-      apiKey: process.env.NEXT_PUBLIC_API_KEY,
-    });
-    const openai = new OpenAIApi(configuration);
-
-    const completion = await openai.createChatCompletion({
-      model: "gpt-3.5-turbo",
-      messages: [
-        { role: "user", content: "Tell me something interesting today" },
-      ],
-    });
-    console.log(completion);
-  }
+  
 
   const [state, setstate] = useState([]);
 
   return (
     <div className="bg-black w-full h-screen flex flex-col justify-center items-center text-white">
-      <button onClick={handle}>Signin</button>
-      {session && (
-        <div>
-          <p>Welcome, {session?.user?.name}!</p>
-          <button onClick={() => signOut()}>Sign out</button>
+      
+      {session ? (
+        <div className="w-full fixed top-0 left-0 flex justify-end bg-gray-800 p-10">
+          <p className="mr-10">Welcome, {session?.user?.name}!</p>
+          <button className="mr-10" onClick={() => signOut()}>Sign out</button>
           <br />
-          <button onClick={handleGetPosts}>Get Posts</button>
+          <button className="mr-10" onClick={handleGetPosts}>Get Posts</button>
           <br />
-          <button
-            onClick={() => {
-              getDailyTrendsForDay();
-            }}
-          >
-            get trends
-          </button>
+          <GetAllTrends state={state} setstate={setstate} />
         </div>
-      )}
-      <GetAllTrends state={state} setstate={setstate} />
-      <div className="w-full h-1/2 bg-slate-400">
-        <button className="text-xl" onClick={makecall}>
-          FETCH
-        </button>
-      </div>
+      ):(
+        <div className="w-full fixed top-0 left-0 flex justify-end bg-gray-800"><button className="m-10" onClick={handle}>Signin</button></div>
+      )
+      }
+      
+      
       <div className="flex flex-col mt-10">
         {state?.map((item, key) => {
           let obj = item["ht:news_item"];
@@ -86,7 +65,6 @@ export default function Home() {
           // Example usage
           const decodedString = decodeEntities(title);
 
-          scrapeWebsite("https://www.usatoday.com/story/entertainment/movies/2023/07/07/pierce-brosnan-adam-devine-talk-the-out-laws-netflix/70380780007/")
           return (
             <div key={key}>
               <h3>{decodedString}</h3>
