@@ -1,7 +1,7 @@
 export default async function postonblogger(accessToken,title,blog) {
   console.log(accessToken);
   const response = await fetch(
-    `https://www.googleapis.com/blogger/v3/blogs/1392779933479218640/posts/`,
+    `https://www.googleapis.com/blogger/v3/blogs/${process.env.NEXT_PUBLIC_BLOG_ID}/posts/`,
     {
         method:"POST",
 
