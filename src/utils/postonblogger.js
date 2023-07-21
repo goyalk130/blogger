@@ -4,7 +4,7 @@ export default async function postonblogger(accessToken,title,blog) {
     `https://www.googleapis.com/blogger/v3/blogs/1392779933479218640/posts/`,
     {
         method:"POST",
-        
+
       headers: {
         Authorization: `Bearer ${accessToken}`,
         "Content-Type": "application/json",
@@ -19,5 +19,5 @@ export default async function postonblogger(accessToken,title,blog) {
       }),
     }
   );
-  return response.data;
+  return await response.json();
 }
